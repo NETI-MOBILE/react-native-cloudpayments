@@ -80,10 +80,10 @@ RCT_EXPORT_METHOD(show3DS: (NSString *)url
     self.rejectWebView = reject;
 
     // Show WebView
-    SDWebViewController *webViewController = [[SDWebViewController alloc] initWithURL:url transactionId:transactionId token:token];
-    webViewController.m_delegate = self;
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
     dispatch_sync(dispatch_get_main_queue(), ^{
+        SDWebViewController *webViewController = [[SDWebViewController alloc] initWithURL:url transactionId:transactionId token:token];
+        webViewController.m_delegate = self;
+        self.navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
         [self.navigationController.navigationBar setTranslucent:false];
         [[self topViewController] presentViewController:self.navigationController animated:YES completion:nil];
     });
